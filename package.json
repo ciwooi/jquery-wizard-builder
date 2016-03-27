@@ -1,16 +1,16 @@
 {
-  "name": "jquery-wizard-maker",
+  "name": "jquery-wizard-builder",
   "version": "v1.0.0",
   "author": "J. Colombo @webdevil",
   "contributors": [],
   "homepage": "http://www.joelcolombo.com/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jcolombo/jquery-wizard-maker.git"
+    "url": "git://github.com/jcolombo/jquery-wizard-builder.git"
   },
   "main": [
-    "dist/jquery.wizard-maker.js",
-    "dist/jquery.wizard-maker.min.js"
+    "dist/jquery.wizard-builder.js",
+    "dist/jquery.wizard-builder.min.js"
   ],
   "licenses": [
     {
