@@ -13,7 +13,7 @@ var minifyHtml = require("gulp-minify-html");
 var minifyCSS = require('gulp-minify-css');
 
 //Build Vars
-var finalName = 'jquery.wizard';
+var finalName = 'jquery.wizard-builder';
 
 
 gulp.task('default', ['build']);
@@ -22,7 +22,7 @@ gulp.task('default', ['build']);
 gulp.task('mkSrc', function() {
   return gulp.src('./src/*.js')
     // .pipe(concat('all.js'))
-    .pipe(gulp.dest('./.tmp/'));
+    .pipe(gulp.dest('./_temp/'));
 });
 
 gulp.task('minifyCss', function () {
@@ -37,7 +37,7 @@ gulp.task('minifyCss', function () {
 });
 
 gulp.task('build', ['mkSrc','minifyCss'], function() {
-  return gulp.src('./.tmp/*.js')
+  return gulp.src('./_temp/*.js')
     .pipe(ngAnnotate())
     .pipe(concat(finalName + ".js"))
     .pipe(gulp.dest('./dist'))
