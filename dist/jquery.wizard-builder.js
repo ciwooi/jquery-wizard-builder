@@ -1,4 +1,15 @@
 /*
+ * jQuery Wizard Builder
+ * version: 1.0.0
+ * Author: Joel Colombo
+ *
+ * Copyright (c) 2016 J. Colombo
+ * Licensed under the MIT license.
+ */
+
+/* 
+ * Original Project Credit (Prior to Forking)
+ *
  * jQuery / jqLite Wizard Plugin
  * version: 0.0.4
  * Author: Girolamo Tomaselli http://bygiro.com
@@ -90,7 +101,7 @@ if(!bg){
 
 	"use strict";
 	
-    var pluginName = "wizardByGiro",
+    var pluginName = "wizardBuilder",
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
 	defaults = {

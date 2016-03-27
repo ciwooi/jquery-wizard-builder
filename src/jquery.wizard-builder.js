@@ -101,7 +101,7 @@ if(!bg){
 
 	"use strict";
 	
-    var pluginName = "wizardByGiro",
+    var pluginName = "wizardBuilder",
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
 	defaults = {

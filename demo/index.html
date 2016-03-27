@@ -24,13 +24,14 @@
 
 	  [data-wizard-init] {
 		margin: auto;
-		width: 600px;
+		width: 100%;
 	  }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-		<div data-wizard-init>
+		<!-- By simply adding the empty attribute `data-wizard-init` page load takes care of it -->
+		<div id="my_wizard">
 		  <ul class="steps">
 			<li data-step="1">Details</li>
 			<li data-step="2">Address</li>
@@ -93,5 +94,15 @@
 		  </div>
 		</div>
     </div><!--/.fluid-container-->
+	<script type="text/javascript">
+
+
+		$("#my_wizard").wizardBuilder({
+			onCompleted: function(element) {
+				console.log(element);
+			},
+		});
+
+	</script>
 </body>
 </html>
