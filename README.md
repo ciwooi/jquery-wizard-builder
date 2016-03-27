@@ -1,4 +1,4 @@
-# jQuery plugin: Wizard
+# jQuery Wizard Builder : Plugin
 
 A simple plugin to convert content into a step-by-step wizard. This package utilizes jQuery and Bootstrap. It was built with jQuery 2.x+ and Bootstrap 3.x+
 
