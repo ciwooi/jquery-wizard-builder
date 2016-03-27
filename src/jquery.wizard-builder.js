@@ -97,7 +97,7 @@ if(!bg){
 	}
 }
  
-;(function ($, document, window){
+(function ($, document, window){
 
 	"use strict";
 	
