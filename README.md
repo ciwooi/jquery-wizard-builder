@@ -4,8 +4,20 @@ A simple plugin to convert content into a step-by-step wizard. This package util
 
 ### Installation
 
-```
+```html
 Checkout the respository with git
+
+<!--Jquery from your library or the copies in demo folder-->
+<script src="js/jquery-2.2.2.min.js"></script>
+
+<!--Bootstrap from your library or the copies in demo folder-->
+<script src="js/bootstrap-3.3.6.min.js"></script>
+<link href="css/bootstrap-3.3.6.min.css" rel="stylesheet" media="screen">
+
+<!--Wizard Builder from the /dist folder (use .min versions in production-->
+<script src="../dist/jquery.wizard-builder.min.js"></script>
+<link href="../dist/jquery.wizard-builder.min.css" rel="stylesheet">
+
 ```
 
 ### Instructions
