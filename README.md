@@ -2,11 +2,15 @@
 
 A simple plugin to convert content into a step-by-step wizard. This package utilizes jQuery and Bootstrap. It was built with jQuery 2.x+ and Bootstrap 3.x+
 
-### Install with Bower
+### Installation
 
 ```
 Checkout the respository with git
 ```
+
+### Instructions
+
+
 
 
 ### Original Author
