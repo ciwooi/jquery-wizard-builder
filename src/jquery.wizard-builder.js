@@ -105,22 +105,31 @@ if(!bg){
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
 	defaults = {
+        /* Options/Settings */
 		actionBar: true,
 		bottomButtons: true,
 		autoSubmit: false,
-		
+        stepCounterType: 'numbers', // 'numbers', 'letters', 'none'
+
+        /* Events*/
 		onCompleted: false,
-		
+
+
 		currentStep: 0,
-		checkStep: false,				
-		
-		nextClass  : 'btn btn-default btn-mini btn-xs',
-        prevClass  : 'btn btn-default btn-mini btn-xs',
+		checkStep: false,
+
+
+        /* Style & Design */
+		nextClass     : 'btn btn-default btn-mini btn-xs',
+        prevClass     : 'btn btn-default btn-mini btn-xs',
         completeClass : 'btn-success',
+
+        /* Text / Labels*/
 		text:{
-			finished: 'Complete',
-			next: 'Next',
-			previous: 'Previous'
+			complete  : 'Complete',
+			next      : 'Next',
+			previous  : 'Previous',
+
 		}
 	},
 	
@@ -280,7 +289,7 @@ if(!bg){
 			if(opts.actionBar && stepsBar.length && !actionBar.length){
 				html += '<div class="action-bar"><div class="btn-group">';
 				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="complete-text">'+ opts.text.complete +'</span></span>';
 				html += '</div></div>';
 				
 				stepsBar.after(html);
@@ -290,7 +299,7 @@ if(!bg){
 			if(opts.bottomButtons && !bottomActions.length){
 				html += '<div class="bottom-actions">';
 				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="complete-text">'+ opts.text.complete +'</span></span>';
 				html += '</div>';
 				
 				that.$element.find('.steps-content').append(html);
@@ -301,13 +310,20 @@ if(!bg){
 			this.$element.find('.btn-next').append('<i class="wiz-icon-arrow-right"></i>');
 			
 			// get steps and prepare them
-			var stepsLi = this.$element.find('.steps > li');
+			var content, step_num, stepsLi = this.$element.find('.steps > li');
+
 			for(var i=0;i<stepsLi.length;i++){
 				var step = $(stepsLi[i]),
 				target = step.attr('data-step'),
 				content = '<span class="step-text">'+ step.html() +'</span>';
-				
-				step.empty().html('<span class="step-index"><span class="label">'+ (i+1) +'</span></span>'+ content + '<span class="wiz-icon-chevron-right colorA"></span><span class="wiz-icon-chevron-right colorB"></span>');
+                if (this.options.stepCounterType=='none') { step_num = ''; }
+                else if (this.options.stepCounterType=='letters') { step_num = String.fromCharCode(65+i); }
+                else { step_num = (i+1); }
+                if (step_num != '') {
+                    step_num = '<span class="label">' + step_num + '</span>';
+                }
+
+				step.empty().html('<span class="step-index">'+step_num+'</span>' + content + '<span class="wiz-icon-chevron-right colorA"></span><span class="wiz-icon-chevron-right colorB"></span>');
 				
 				that.$element.find('.steps-content [data-step="'+ target +'"]').addClass('step-pane');
 				

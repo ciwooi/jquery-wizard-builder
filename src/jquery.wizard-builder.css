@@ -183,7 +183,7 @@
 	white-space: nowrap;
 }
 
-.wizard .btn-next:not(.final-step) .finished-text {
+.wizard .btn-next:not(.final-step) .complete-text {
 	display: none;
 }
 

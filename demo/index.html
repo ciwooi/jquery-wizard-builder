@@ -129,9 +129,16 @@
 		$("#my_wizard_2").wizardBuilder({
             topButtons:true,
             actionBar:true,
+            autoSubmit:true,   /* This is ignored because onCompleted is defined below */
+            stepCounterType: 'none',
             prevClass:'btn btn-default',
             nextClass:'btn btn-default',
             finalClass:'btn-info',
+            text: {
+                complete: "Done",
+                next: "Go Ahead",
+                previous: "Go Back",
+            },
 			onCompleted: function(element) {
 				console.log(element);
 			},

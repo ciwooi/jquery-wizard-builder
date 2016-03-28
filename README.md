@@ -71,6 +71,7 @@ $("#my_wizard").wizardBuilder({
 		<tr>
 			<th>Option</th>
 			<th>Default</th>
+			<th>Allowed</th>
 			<th>Description</th>
 		</tr>
 	</thead>
@@ -78,6 +79,7 @@ $("#my_wizard").wizardBuilder({
 	    <tr>
 	        <td>actionBar</td>
 	        <td>true</td>
+	        <td>true / false</td>
 	        <td>
 	        Add the button action bar inline with the step elements.
 	        Options are boolean true or false to show or hide the buttons in the upper step bar</td>
@@ -85,6 +87,7 @@ $("#my_wizard").wizardBuilder({
 	    <tr>
             <td>bottomButtons</td>
             <td>true</td>
+            <td>true / false</td>
             <td>
             Add the next/prev buttons below the content container.
             Options are boolean true or false to show or hide the buttons at the bottom of the wizard</td>
@@ -92,26 +95,39 @@ $("#my_wizard").wizardBuilder({
         <tr>
             <td>autoSubmit</td>
             <td>false</td>
+            <td>true / false</td>
             <td>
             If set to true and the whole wizard is contained within a &ltform&gt tag,
             the final "Complete" step will simply submit the form to its action. If you have
             added an onCompleted method call, this option is ignored</td>
         </tr>
         <tr>
+            <td>stepCounterType</td>
+            <td>'numbers'</td>
+            <td>'numbers', 'letters', 'none'</td>
+            <td>
+            The types of prefix for the step boxes. Defaults to using 'numbers' starting at 1.
+            'letters' will start steps with "A", 'none' will show no step label prefix
+            </td>
+        </tr>
+        <tr>
             <td>nextClass</td>
             <td>'btn btn-default btn-mini btn-xs'</td>
+            <td>Any CSS Classes</td>
             <td>
             The CSS class(es) to apply to the NEXT buttons (these are also applied to Complete button with finalClass option combined)</td>
         </tr>
         <tr>
             <td>prevClass</td>
             <td>'btn btn-default btn-mini btn-xs'</td>
+            <td>Any CSS Classes</td>
             <td>
             The CSS class(es) to apply to the PREVIOUS buttons</td>
         </tr>
         <tr>
             <td>completeClass</td>
             <td>'btn-success'</td>
+            <td>Any CSS Classes</td>
             <td>
             The CSS class(es) to apply to the FINAL button (includes the nextClass option before this is appended)</td>
         </tr>
