@@ -111,6 +111,20 @@ $("#my_wizard").wizardBuilder({
             </td>
         </tr>
         <tr>
+            <td>btnText</td>
+            <td>
+                {
+                    next : 'Next',
+                    previous: 'Previous',
+                    complete: 'Complete'
+                }
+            </td>
+            <td>An object with at least ONE of the 3 properties set in the default to override</td>
+            <td>
+            You can change the default button text for one or more of the button types. Value must be an object with properies
+            </td>
+        </tr>
+        <tr>
             <td>nextClass</td>
             <td>'btn btn-default btn-mini btn-xs'</td>
             <td>Any CSS Classes</td>

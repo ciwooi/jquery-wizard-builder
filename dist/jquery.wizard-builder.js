@@ -125,11 +125,10 @@ if(!bg){
         completeClass : 'btn-success',
 
         /* Text / Labels*/
-		text:{
+		btnText:{
 			complete  : 'Complete',
 			next      : 'Next',
 			previous  : 'Previous',
-
 		}
 	},
 	
@@ -263,7 +262,7 @@ if(!bg){
 		init: function (element, options) {
 			var that = this;
 			this.$element = $(element);
-			this.options = $.extend({},	defaults, options);
+			this.options = $.extend(true, {}, defaults, options);
 			
 			var opts = this.options;
 
@@ -288,8 +287,8 @@ if(!bg){
             html = '';
 			if(opts.actionBar && stepsBar.length && !actionBar.length){
 				html += '<div class="action-bar"><div class="btn-group">';
-				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="complete-text">'+ opts.text.complete +'</span></span>';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.btnText.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.btnText.next +'</span><span class="complete-text">'+ opts.btnText.complete +'</span></span>';
 				html += '</div></div>';
 				
 				stepsBar.after(html);
@@ -298,8 +297,8 @@ if(!bg){
 			html = '';
 			if(opts.bottomButtons && !bottomActions.length){
 				html += '<div class="bottom-actions">';
-				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="complete-text">'+ opts.text.complete +'</span></span>';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.btnText.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.btnText.next +'</span><span class="complete-text">'+ opts.btnText.complete +'</span></span>';
 				html += '</div>';
 				
 				that.$element.find('.steps-content').append(html);
