@@ -21,7 +21,39 @@ Checkout the respository with git
 ```
 
 ### Instructions
+Simple Example. See /demo/index.html for more complex scenarios
 
+```html
+<!-- Load the libraries, css, and js as shown above into your <head> or combination <head> and bottom of <body> -->
+
+<div id="my_wizard">
+    <ul class="steps">
+        <li data-step="1">Step 1</li>
+        <li data-step="2">Step 2</li>
+    </ul>
+    <div data-step="1">
+        ...Content
+    </div>
+    <div data-step="2">
+        ...Content
+    </div>
+</div>
+
+<!-- Just before end of page before </body> run the Javascript -->
+<script type="text/javascript">
+
+    // $("#my_wizard").wizardBuilder(); // Simple initiation with JS having no options passed in
+
+    // Javascript manual init with a couple options passed in
+    $("#my_wizard").wizardBuilder({
+        topButtons: false,                  // Hide the top next/prev bottoms
+        onCompleted: function(element) {    // Add a callback function when the final step "Complete" is pushed
+            console.log(element);
+        },
+    });
+
+</script>
+```
 
 
 

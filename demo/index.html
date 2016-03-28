@@ -8,30 +8,77 @@
 
     <script src="js/jquery-2.2.2.min.js"></script>
     <script src="js/bootstrap-3.3.6.min.js"></script>
-    <script src="../dist/jquery.wizard-builder.js"></script>
+    <script src="../src/jquery.wizard-builder.js"></script>
 
 
     <link href="css/bootstrap-3.3.6.min.css" rel="stylesheet" media="screen">
-    <link href="../dist/jquery.wizard-builder.css" rel="stylesheet">
+    <link href="../src/jquery.wizard-builder.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
 
-	  [data-wizard-init] {
+	  [data-wizard-builder] {
 		margin: auto;
 		width: 100%;
 	  }
     </style>
 </head>
 <body>
+
+	<div style="padding:15px; margin-bottom:10px;">
+		<h1>Auto-Initialize Basic Example</h1>
+		<p>Simple conversion of a tab system into a basic step-by-step process based on the data-wizard-builder attribute set on the container div</p>
+
+		<!-- Start Basic Example 1 -->
+		<div class="container-fluid">
+			<div id="my_wizard_1" data-wizard-builder>
+				<ul class="steps">
+					<li data-step="1">Step 1</li>
+					<li data-step="2">Step 2</li>
+					<li data-step="3">Step 3</li>
+				</ul>
+				<div class="steps-content">
+					<div data-step="1">
+						<h4>Step 1</h4>
+						<p>Simply adding the attribute to the wrapping div like `&ltdiv data-wizard-builder&gt` will turn it into a wizard on page load</p>
+					</div>
+					<div data-step="2">
+						<h4>Step 2</h4>
+						<div class="well well-sm">
+
+                            <pre>
+                            &ltdiv <strong>data-wizard-builder</strong>&gt
+                                &ltul class="steps"&gt
+                                    &ltli data-step="1"&gtStep 1&lt/li&gt
+                                    &ltli data-step="2"&gtStep 2&lt/li&gt
+                                &lt/ul&gt
+                                &ltdiv data-step="1"&gt
+                                    ...Content
+                                &lt/div&gt
+                                &ltdiv data-step="2"&gt
+                                    ...Content
+                                &lt/div&gt
+                            &lt/div&gt
+                            </pre>
+
+                        </div>
+					</div>
+					<div data-step="3">
+						<h4>Step 3</h4>
+						<p>Step 3 Content</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Example -->
+	</div>
+
+
     <div class="container-fluid">
-		<!-- By simply adding the empty attribute `data-wizard-init` page load takes care of it -->
-		<div id="my_wizard">
+		<!-- By simply adding the empty attribute `data-wizard-builder` page load takes care of it -->
+		<div id="my_wizard_2">
 		  <ul class="steps">
 			<li data-step="1">Details</li>
 			<li data-step="2">Address</li>
@@ -97,7 +144,7 @@
 	<script type="text/javascript">
 
 
-		$("#my_wizard").wizardBuilder({
+		$("#my_wizard_2").wizardBuilder({
 			onCompleted: function(element) {
 				console.log(element);
 			},
