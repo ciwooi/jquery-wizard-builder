@@ -367,7 +367,7 @@ if(!bg){
 	}
 
 	$(document).ready(function(){
-		var mySelector = document.querySelector('[data-wizard-init]');
+		var mySelector = document.querySelector('[data-wizard-builder]');
 		$(mySelector)[ pluginName ]({});				
 	});
 }(bg, document, window));
