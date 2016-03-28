@@ -105,14 +105,18 @@ if(!bg){
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
 	defaults = {
-		currentStep: 0,
-		checkStep: false,
-		onCompleted: false,
+		actionBar: true,
 		bottomButtons: true,
-		topButtons: true,
 		autoSubmit: false,
-		nextClass: '.btn-next',
-		prevClass: '.btn-prev',
+		
+		onCompleted: false,
+		
+		currentStep: 0,
+		checkStep: false,				
+		
+		nextClass  : 'btn btn-default btn-mini btn-xs',
+        prevClass  : 'btn btn-default btn-mini btn-xs',
+        completeClass : 'btn-success',
 		text:{
 			finished: 'Complete',
 			next: 'Next',
@@ -151,7 +155,7 @@ if(!bg){
 			steps = that.$element.find('.steps'),
 			stepsItems = that.$element.find('.steps > li');
 			
-		if(!this.currentStep) this.currentStep = 1;
+		if(!this.currentStep) { this.currentStep = 1; }
 		
 		stepsItems.removeClass('active');
 		that.$element
@@ -179,11 +183,11 @@ if(!bg){
 		}
 		
 		// set buttons based on current step
-		that.$element.find('.btn-next').removeClass('final-step btn-success');
+		that.$element.find('.btn-next').removeClass('final-step '+that.options.completeClass);
 		that.$element.find('.btn-prev').removeClass('disabled hidden');
 		if(that.currentStep == stepsItems.length){
 			// we are in the last step
-			that.$element.find('.btn-next').addClass('final-step btn-success');
+			that.$element.find('.btn-next').addClass('final-step '+that.options.completeClass);
 		} else if(that.currentStep == 1){
 			that.$element.find('.btn-prev').addClass('disabled hidden');
 		}		
@@ -259,7 +263,7 @@ if(!bg){
 			
 			// add the buttons
 			var stepsBar = this.$element.find('.steps'),
-			topActions = this.$element.find('.top-actions'),
+			actionBar = this.$element.find('.action-bar'),
 			bottomActions = this.$element.find('.bottom-actions'),
 			progressBar = this.$element.find('.progress-bar'),
 			html = '';
@@ -271,11 +275,12 @@ if(!bg){
 			} else {
 				stepsBar.parent().addClass('steps-index-container');
 			}
-			
-			if(opts.topButtons && stepsBar.length && !topActions.length){
-				html += '<div class="top-actions"><div class="btn-group">';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+
+            html = '';
+			if(opts.actionBar && stepsBar.length && !actionBar.length){
+				html += '<div class="action-bar"><div class="btn-group">';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
 				html += '</div></div>';
 				
 				stepsBar.after(html);
@@ -284,8 +289,8 @@ if(!bg){
 			html = '';
 			if(opts.bottomButtons && !bottomActions.length){
 				html += '<div class="bottom-actions">';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
 				html += '</div>';
 				
 				that.$element.find('.steps-content').append(html);
@@ -309,7 +314,7 @@ if(!bg){
 				// detect currentStep
 				if(step.hasClass('active') && !that.currentStep){
 					that.currentStep = i+1;
-				}				
+				}
 			}
 
 			this.$element.find('.steps > li:last-child').addClass('final');
@@ -367,7 +372,7 @@ if(!bg){
 	}
 
 	$(document).ready(function(){
-		var mySelector = document.querySelector('[data-wizard-init]');
+		var mySelector = document.querySelector('[data-wizard-builder]');
 		$(mySelector)[ pluginName ]({});				
 	});
 }(bg, document, window));

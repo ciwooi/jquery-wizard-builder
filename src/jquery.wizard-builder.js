@@ -114,8 +114,9 @@ if(!bg){
 		currentStep: 0,
 		checkStep: false,				
 		
-		nextClass: '.btn-next',
-		prevClass: '.btn-prev',
+		nextClass  : 'btn btn-default btn-mini btn-xs',
+        prevClass  : 'btn btn-default btn-mini btn-xs',
+        completeClass : 'btn-success',
 		text:{
 			finished: 'Complete',
 			next: 'Next',
@@ -182,11 +183,11 @@ if(!bg){
 		}
 		
 		// set buttons based on current step
-		that.$element.find('.btn-next').removeClass('final-step btn-success');
+		that.$element.find('.btn-next').removeClass('final-step '+that.options.completeClass);
 		that.$element.find('.btn-prev').removeClass('disabled hidden');
 		if(that.currentStep == stepsItems.length){
 			// we are in the last step
-			that.$element.find('.btn-next').addClass('final-step btn-success');
+			that.$element.find('.btn-next').addClass('final-step '+that.options.completeClass);
 		} else if(that.currentStep == 1){
 			that.$element.find('.btn-prev').addClass('disabled hidden');
 		}		
@@ -278,8 +279,8 @@ if(!bg){
             html = '';
 			if(opts.actionBar && stepsBar.length && !actionBar.length){
 				html += '<div class="action-bar"><div class="btn-group">';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
 				html += '</div></div>';
 				
 				stepsBar.after(html);
@@ -288,8 +289,8 @@ if(!bg){
 			html = '';
 			if(opts.bottomButtons && !bottomActions.length){
 				html += '<div class="bottom-actions">';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
-				html += '<span class="btn btn-default btn-mini btn-xs btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
+				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
+				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
 				html += '</div>';
 				
 				that.$element.find('.steps-content').append(html);

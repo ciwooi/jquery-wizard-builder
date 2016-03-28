@@ -97,6 +97,24 @@ $("#my_wizard").wizardBuilder({
             the final "Complete" step will simply submit the form to its action. If you have
             added an onCompleted method call, this option is ignored</td>
         </tr>
+        <tr>
+            <td>nextClass</td>
+            <td>'btn btn-default btn-mini btn-xs'</td>
+            <td>
+            The CSS class(es) to apply to the NEXT buttons (these are also applied to Complete button with finalClass option combined)</td>
+        </tr>
+        <tr>
+            <td>prevClass</td>
+            <td>'btn btn-default btn-mini btn-xs'</td>
+            <td>
+            The CSS class(es) to apply to the PREVIOUS buttons</td>
+        </tr>
+        <tr>
+            <td>completeClass</td>
+            <td>'btn-success'</td>
+            <td>
+            The CSS class(es) to apply to the FINAL button (includes the nextClass option before this is appended)</td>
+        </tr>
 	</tbody>
 </table>
 

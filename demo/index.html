@@ -23,6 +23,12 @@
           margin:10px;
       }
 
+      .junk {
+          color:red;
+          padding:25x;
+          border:1px solid #000;
+      }
+
 	  [data-wizard-builder] {
 		margin: auto;
 		width: 100%;
@@ -123,6 +129,9 @@
 		$("#my_wizard_2").wizardBuilder({
             topButtons:true,
             actionBar:true,
+            prevClass:'btn btn-default',
+            nextClass:'btn btn-default',
+            finalClass:'btn-info',
 			onCompleted: function(element) {
 				console.log(element);
 			},
