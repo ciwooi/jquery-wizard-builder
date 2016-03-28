@@ -31,11 +31,13 @@ Simple Example. See /demo/index.html for more complex scenarios
         <li data-step="1">Step 1</li>
         <li data-step="2">Step 2</li>
     </ul>
-    <div data-step="1">
-        ...Content
-    </div>
-    <div data-step="2">
-        ...Content
+    <div class="steps-content">
+        <div data-step="1">
+            ...Content
+        </div>
+        <div data-step="2">
+            ...Content
+        </div>
     </div>
 </div>
 
@@ -54,10 +56,91 @@ Simple Example. See /demo/index.html for more complex scenarios
 
 </script>
 ```
+### Reference Documentation
+
+Options
+-------
+Initialization options that can be passed in during initial build of the wizard
+```javascript
+$("#my_wizard").wizardBuilder({
+    topButtons: false    // OPTION: Hide the top next/prev bottoms
+});
+```
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Option</th>
+			<th>Default</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <tr>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	    </tr>
+	</tbody>
+</table>
+
+Events
+-------
+Initialization of event callbacks that get triggered. They pass in just like options during setup
+
+```javascript
+$("#my_wizard").wizardBuilder({
+    onCompleted: function(element) {    // Add a callback function when the final step "Complete" is pushed
+        console.log(element);
+    },
+});
+```
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Event</th>
+			<th>Parameters</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <tr>
+	        <td>onCompleted</td>
+	        <td>(self)</td>
+	        <td>
+	            Triggered when the final submission button is pressed.<br/>
+	            Receives an instance of its WizardBuilder object as a parameter.<br/>
+	            <italic>If this event is hooked up, the option for autoSubmit is ignored.</italic>
+	        </td>
+	    </tr>
+	</tbody>
+</table>
 
 
+License
+===============
+The MIT License (MIT)
 
-### Original Author
+Copyright (c) 2016 - Joel Colombo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+### Original Author & License
 jQuery / jqLite Wizard Plugin  
 https://github.com/bygiro/jQuery-Wizard-Plugin  
 version: 0.0.4  
