@@ -151,7 +151,7 @@ if(!bg){
 			steps = that.$element.find('.steps'),
 			stepsItems = that.$element.find('.steps > li');
 			
-		if(!this.currentStep) this.currentStep = 1;
+		if(!this.currentStep) { this.currentStep = 1; }
 		
 		stepsItems.removeClass('active');
 		that.$element
@@ -309,7 +309,7 @@ if(!bg){
 				// detect currentStep
 				if(step.hasClass('active') && !that.currentStep){
 					that.currentStep = i+1;
-				}				
+				}
 			}
 
 			this.$element.find('.steps > li:last-child').addClass('final');
