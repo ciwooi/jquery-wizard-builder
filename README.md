@@ -93,7 +93,7 @@ $("#my_wizard").wizardBuilder({
             <td>autoSubmit</td>
             <td>false</td>
             <td>
-            If set to true and the whole wizard is contained within a <form> tag,
+            If set to true and the whole wizard is contained within a &ltform&gt tag,
             the final "Complete" step will simply submit the form to its action. If you have
             added an onCompleted method call, this option is ignored</td>
         </tr>
