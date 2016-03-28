@@ -48,7 +48,7 @@ Simple Example. See /demo/index.html for more complex scenarios
 
     // Javascript manual init with a couple options passed in
     $("#my_wizard").wizardBuilder({
-        topButtons: false,                  // Hide the top next/prev bottoms
+        actionBar: false,                  // Hide the embedded next/prev buttons
         onCompleted: function(element) {    // Add a callback function when the final step "Complete" is pushed
             console.log(element);
         },
@@ -63,7 +63,7 @@ Options
 Initialization options that can be passed in during initial build of the wizard
 ```javascript
 $("#my_wizard").wizardBuilder({
-    topButtons: false    // OPTION: Hide the top next/prev bottoms
+    actionBar: false    // OPTION: Hide the embedded next/prev buttons
 });
 ```
 <table class="table table-bordered table-striped">
@@ -76,10 +76,27 @@ $("#my_wizard").wizardBuilder({
 	</thead>
 	<tbody>
 	    <tr>
-	        <td></td>
-	        <td></td>
-	        <td></td>
+	        <td>actionBar</td>
+	        <td>true</td>
+	        <td>
+	        Add the button action bar inline with the step elements.
+	        Options are boolean true or false to show or hide the buttons in the upper step bar</td>
 	    </tr>
+	    <tr>
+            <td>bottomButtons</td>
+            <td>true</td>
+            <td>
+            Add the next/prev buttons below the content container.
+            Options are boolean true or false to show or hide the buttons at the bottom of the wizard</td>
+        </tr>
+        <tr>
+            <td>autoSubmit</td>
+            <td>false</td>
+            <td>
+            If set to true and the whole wizard is contained within a <form> tag,
+            the final "Complete" step will simply submit the form to its action. If you have
+            added an onCompleted method call, this option is ignored</td>
+        </tr>
 	</tbody>
 </table>
 
