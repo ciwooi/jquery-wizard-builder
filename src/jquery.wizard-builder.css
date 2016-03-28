@@ -129,7 +129,7 @@
 	padding-left: 10px;
 }
 
-.wizard .top-actions {
+.wizard .action-bar {
 	z-index: 99;
 	position: absolute;
 	right: 0;
@@ -148,10 +148,11 @@
 	-o-box-shadow: -3px 0 2px -1px #888;
 }
 
-.wizard .top-actions .btn-group {
+.wizard .action-bar .btn-group {
 	display: table-cell;
 	vertical-align: middle;
 }
+
 .wizard .bottom-actions {
 	width: 100%;
 }

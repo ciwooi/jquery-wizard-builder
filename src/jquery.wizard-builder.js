@@ -105,12 +105,15 @@ if(!bg){
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
 	defaults = {
-		currentStep: 0,
-		checkStep: false,
-		onCompleted: false,
+		actionBar: true,
 		bottomButtons: true,
-		topButtons: true,
 		autoSubmit: false,
+		
+		onCompleted: false,
+		
+		currentStep: 0,
+		checkStep: false,				
+		
 		nextClass: '.btn-next',
 		prevClass: '.btn-prev',
 		text:{
@@ -259,7 +262,7 @@ if(!bg){
 			
 			// add the buttons
 			var stepsBar = this.$element.find('.steps'),
-			topActions = this.$element.find('.top-actions'),
+			actionBar = this.$element.find('.action-bar'),
 			bottomActions = this.$element.find('.bottom-actions'),
 			progressBar = this.$element.find('.progress-bar'),
 			html = '';
@@ -271,9 +274,10 @@ if(!bg){
 			} else {
 				stepsBar.parent().addClass('steps-index-container');
 			}
-			
-			if(opts.topButtons && stepsBar.length && !topActions.length){
-				html += '<div class="top-actions"><div class="btn-group">';
+
+            html = '';
+			if(opts.actionBar && stepsBar.length && !actionBar.length){
+				html += '<div class="action-bar"><div class="btn-group">';
 				html += '<span class="btn btn-default btn-mini btn-xs btn-prev"><span class="previous-text">'+ opts.text.previous +'</span></span>';
 				html += '<span class="btn btn-default btn-mini btn-xs btn-next"><span class="next-text">'+ opts.text.next +'</span><span class="finished-text">'+ opts.text.finished +'</span></span>';
 				html += '</div></div>';
