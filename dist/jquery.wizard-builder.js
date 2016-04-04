@@ -1,6 +1,6 @@
 /*
  * jQuery Wizard Builder
- * version: 1.0.0
+ * version: 0.5.0
  * Author: Joel Colombo
  *
  * Copyright (c) 2016 J. Colombo
@@ -113,10 +113,11 @@ if(!bg){
 
         /* Events*/
 		onCompleted: false,
+        onStepLoadBefore: false,
 
 
 		currentStep: 0,
-		checkStep: false,
+		
 
 
         /* Style & Design */
@@ -215,16 +216,16 @@ if(!bg){
 		}
 	},
 
-	moveStep = function(step, direction, event, checkStep){
+	moveStep = function(step, direction, event, onStepLoadBefore){
 		var canMove = true,
 		steps = this.$element.find('.steps > li'),
 		triggerEnd = false;
 
-		checkStep = checkStep === false ? false : true;
+        onStepLoadBefore = (onStepLoadBefore === false) ? false : true;
 
 		// check we can move
-		if(checkStep && typeof this.options.checkStep == 'function'){
-			canMove = this.options.checkStep(this,direction,event);
+		if(onStepLoadBefore && typeof this.options.onStepLoadBefore == 'function'){
+			canMove = this.options.onStepLoadBefore(this,direction,event);
 		}
 
 		if(!canMove) return;
@@ -337,7 +338,7 @@ if(!bg){
 
 			attachEventsHandler.call(this);
 
-			var callbacks = ['checkStep','onCompleted'],cb;
+			var callbacks = ['onStepLoadBefore','onCompleted'],cb;
 			for(var i=0;i<callbacks.length;i++){
 				cb = callbacks[i];
 				if(typeof this.options[cb] == 'string' && typeof window[this.options[cb]] == 'function'){
@@ -352,35 +353,25 @@ if(!bg){
             var step = params.step;
             var count = params.errors;
             console.log("Set Error Count of Step "+step+" to "+count);
-            //console.log(this.$element);
-            //console.log($(this.$element));
+
             var eh = $(this.$element).find( 'li[data-step="'+step+'"] span.step-errors' ); //
             if (count>0) {
                 eh.html("<span class='label'>" + count + "</span>");
             } else {
                 eh.html("");
             }
-            //console.log(i);
-            //if (i) {
-            //    console.log('Found it');
-            //}
-            //i.html("<span>You Suck</span>");
-
-
-            //#campaign_wizard > div.steps-index-container > ul > li:nth-child(2)
-            //<span class='label'>4</span>
         },
 
-		next: function(checkStep,event){
-			moveStep.call(this,false,true,event,checkStep);
+		next: function(onStepLoadBefore,event){
+			moveStep.call(this,false,true,event,onStepLoadBefore);
 		},
 
-		previous: function(checkStep,event){
-			moveStep.call(this,false,false,event,checkStep);
+		previous: function(onStepLoadBefore,event){
+			moveStep.call(this,false,false,event,onStepLoadBefore);
 		},
 
-		setStep: function(step, checkStep, event){
-			moveStep.call(this,step,null,event,checkStep);
+		setStep: function(step, onStepLoadBefore, event){
+			moveStep.call(this,step,null,event,onStepLoadBefore);
 		}
 	};
 

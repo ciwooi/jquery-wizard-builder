@@ -164,6 +164,7 @@ $("#my_wizard").wizardBuilder({
 		<tr>
 			<th>Event</th>
 			<th>Parameters</th>
+			<th>Return</th>
 			<th>Description</th>
 		</tr>
 	</thead>
@@ -171,12 +172,27 @@ $("#my_wizard").wizardBuilder({
 	    <tr>
 	        <td>onCompleted</td>
 	        <td>(self)</td>
+	        <td>Null</td>
 	        <td>
 	            Triggered when the final submission button is pressed.<br/>
-	            Receives an instance of its WizardBuilder object as a parameter.<br/>
+	            Receives an instance of its WizardBuilder object as the self parameter.<br/>
+	            This does not require a return value<br/>
 	            <italic>If this event is hooked up, the option for autoSubmit is ignored.</italic>
 	        </td>
 	    </tr>
+	    <tr>
+            <td>onStepLoadBefore</td>
+            <td>(self, direction, event)</td>
+            <td>Boolean</td>
+            <td>
+                Triggered whenever a step is about to be loaded<br/>
+                Receives an instance of its WizardBuilder object as the self parameter.<br/>
+                Receives a boolean parameter (direction); true if its an attempt to move forward a step, false if backward<br/>
+                Receives the original browser event as 3rd parameter<br/>
+                Return a BOOLEAN true if you want it to proceed or a false to stop it from changing steps<br/>
+                <italic>This is the old checkStep method renamed and will be rewritten very soon as a bunch of new methods are added for events</italic>
+            </td>
+        </tr>
 	</tbody>
 </table>
 
@@ -211,6 +227,7 @@ $("#my_wizard").wizardBuilder('methodNameBelow', { // methodNameBelow is referen
 	    </tr>
 	</tbody>
 </table>
+
 
 
 License
