@@ -117,7 +117,7 @@ if(!bg){
 
 
 		currentStep: 0,
-		
+
 
 
         /* Style & Design */
@@ -352,13 +352,14 @@ if(!bg){
         setErrorCount: function (params){
             var step = params.step;
             var count = params.errors;
-            console.log("Set Error Count of Step "+step+" to "+count);
-
+            //console.log("Set Error Count of Step "+step+" to "+count);
             var eh = $(this.$element).find( 'li[data-step="'+step+'"] span.step-errors' ); //
-            if (count>0) {
-                eh.html("<span class='label'>" + count + "</span>");
-            } else {
-                eh.html("");
+            if (eh) {
+                if (count > 0) {
+                    eh.html("<span class='label'>" + count + "</span>");
+                } else {
+                    eh.html("");
+                }
             }
         },
 
