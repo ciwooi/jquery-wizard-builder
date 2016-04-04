@@ -180,6 +180,38 @@ $("#my_wizard").wizardBuilder({
 	</tbody>
 </table>
 
+Methods
+-------
+Methods that can be called on the wizard object directly
+
+```javascript
+$("#my_wizard").wizardBuilder('methodNameBelow', { // methodNameBelow is referenced below
+    param_1: 'param_value_1',
+    param_2: 'param_value_2' // etc. Params are listed in docs below as NAME: DATA TYPE (with descriptions on right)
+});
+```
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>Method Name</th>
+			<th>Parameters</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <tr>
+	        <td>setErrorCount</td>
+	        <td>step:int, errors:int</td>
+	        <td>
+	            Sets the Error Count in the step headings for a specific step<br/>
+	            An integer is expected for the two parameters<br/>
+	            Step must be a valid step number 1 to X (number of steps in your wizard)<br/>
+	            If errors is set to 0, the error label will disappear
+	        </td>
+	    </tr>
+	</tbody>
+</table>
+
 
 License
 ===============
@@ -206,9 +238,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ### Original Author & License
-jQuery / jqLite Wizard Plugin  
-https://github.com/bygiro/jQuery-Wizard-Plugin  
-version: 0.0.4  
-Author: Girolamo Tomaselli http://bygiro.com  
-Copyright (c) 2013 G. Tomaselli  
-Licensed under the MIT license.  
+jQuery / jqLite Wizard Plugin
+https://github.com/bygiro/jQuery-Wizard-Plugin
+version: 0.0.4
+Author: Girolamo Tomaselli http://bygiro.com
+Copyright (c) 2013 G. Tomaselli
+Licensed under the MIT license.

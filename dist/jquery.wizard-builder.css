@@ -59,7 +59,7 @@
 
 .wizard .steps-index-container {
 	position: relative;
-	overflow: hidden;	
+	overflow: hidden;
 }
 
 .wizard .steps-content{
@@ -127,6 +127,16 @@
 
 .wizard ul.steps > li:first-child .step-index {
 	padding-left: 10px;
+}
+
+
+.wizard ul.steps > li .step-errors {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.wizard ul.steps > li .step-errors .label {
+    background-color: #9F0002;
 }
 
 .wizard .action-bar {

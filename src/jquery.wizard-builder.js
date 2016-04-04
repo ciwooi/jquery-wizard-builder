@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  */
 
-/* 
+/*
  * Original Project Credit (Prior to Forking)
  *
  * jQuery / jqLite Wizard Plugin
@@ -25,11 +25,11 @@ if(!bg){
 		bg = jQuery;
 	} else if(typeof angular != 'undefined'){
 		bg = angular.element;
-		
+
 		(function(){
 			bg.extend = angular.extend;
 			bg.isFunction = angular.isFunction;
-		
+
 			function selectResult(elem, selector){
 				if (elem.length == 1)
 					return elem[0].querySelectorAll(selector);
@@ -38,15 +38,15 @@ if(!bg){
 					for(var i=0;i<elem.length;i++){
 						var elm = elem[i];
 						var nodes = angular.element(elm.querySelectorAll(selector));
-						matches.push.apply(matches, nodes.slice());					
+						matches.push.apply(matches, nodes.slice());
 					}
 					return matches;
 
 				}
 
-			}	
-		
-			bg.prototype.find = function (selector){			
+			}
+
+			bg.prototype.find = function (selector){
 				var context = this[0];
 				// Early return if context is not an element or document
 				if (!context || (context.nodeType !== 1 && context.nodeType !== 9) || !angular.isString(selector)) {
@@ -76,13 +76,13 @@ if(!bg){
 				}
 				return angular.element();
 			};
-			
+
 			bg.prototype.outerWidth = function () {
 				var el = this[0];
 				if(typeof el == 'undefined') return null;
 				return el.offsetWidth;
 			};
-			
+
 			bg.prototype.width = function () {
 				var el = this[0];
 				if(typeof el == 'undefined') return null;
@@ -92,15 +92,15 @@ if(!bg){
 					width -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
 				return width;
 			};
-		
+
 		})();
 	}
 }
- 
+
 (function ($, document, window){
 
 	"use strict";
-	
+
     var pluginName = "wizardBuilder",
     // the name of using in .data()
 	dataPlugin = "plugin_" + pluginName,
@@ -131,30 +131,30 @@ if(!bg){
 			previous  : 'Previous',
 		}
 	},
-	
+
 	attachEventsHandler = function(){
 		var that = this;
-		
+
 		that.$element.find('.btn-prev:not(.disabled):not(.hidden)').on('click', function(e){
 			e.stopPropagation();
 			that.previous.call(that,true,e);
-		});	
-		
+		});
+
 		that.$element.find('.btn-next').on('click', function(e){
 			e.stopPropagation();
 			that.next.call(that,true,e);
 		});
-		
+
 		that.$element.find('.steps > li').on('click', function(e){
 			e.stopPropagation();
 			var step = $(this).attr('data-step'),
 			isCompleted = $(this).hasClass('completed');
 			if(!isCompleted) return true;
-			
+
 			that.setStep.call(that,step,e);
-		});		
+		});
 	},
-	
+
 	checkStatus = function(){
 		var that = this,
 			currentWidth,
@@ -162,14 +162,14 @@ if(!bg){
 			stepPosition = false,
 			steps = that.$element.find('.steps'),
 			stepsItems = that.$element.find('.steps > li');
-			
+
 		if(!this.currentStep) { this.currentStep = 1; }
-		
+
 		stepsItems.removeClass('active');
 		that.$element
 			.find('.steps > li[data-step="'+ that.currentStep +'"]')
 			.addClass('active');
-			
+
 		that.$element.find('.steps-content .step-pane').removeClass('active');
 		var current = that.$element.find('.steps-content .step-pane[data-step="'+ that.currentStep +'"]');
 			current.addClass('active');
@@ -181,15 +181,15 @@ if(!bg){
 			} else {
 				stepLi.removeClass('completed');
 			}
-			
+
 			currentWidth = stepLi.outerWidth();
-			if(!stepPosition && stepLi.hasClass('active')){				
+			if(!stepPosition && stepLi.hasClass('active')){
 				stepPosition = stepsWidth + (currentWidth / 2);
 			}
-			
-			stepsWidth += currentWidth;			
+
+			stepsWidth += currentWidth;
 		}
-		
+
 		// set buttons based on current step
 		that.$element.find('.btn-next').removeClass('final-step '+that.options.completeClass);
 		that.$element.find('.btn-prev').removeClass('disabled hidden');
@@ -198,13 +198,13 @@ if(!bg){
 			that.$element.find('.btn-next').addClass('final-step '+that.options.completeClass);
 		} else if(that.currentStep == 1){
 			that.$element.find('.btn-prev').addClass('disabled hidden');
-		}		
-		
+		}
+
 		// move steps view if needed
 		var totalWidth = that.$element.width() - that.$element.find('.actions').outerWidth();
-		
+
 		if(stepsWidth < totalWidth) return;
-		
+
 		var offsetDiff = stepPosition - (totalWidth / 2);
 		if(offsetDiff > 0){
 			// move it forward
@@ -214,21 +214,21 @@ if(!bg){
 			steps.css('left',0);
 		}
 	},
-	
-	moveStep = function(step, direction, event, checkStep){		
+
+	moveStep = function(step, direction, event, checkStep){
 		var canMove = true,
 		steps = this.$element.find('.steps > li'),
 		triggerEnd = false;
-		
+
 		checkStep = checkStep === false ? false : true;
 
 		// check we can move
 		if(checkStep && typeof this.options.checkStep == 'function'){
 			canMove = this.options.checkStep(this,direction,event);
 		}
-		
+
 		if(!canMove) return;
-		
+
 		if(step){
 			this.currentStep = parseInt(step);
 		} else {
@@ -244,9 +244,9 @@ if(!bg){
 			this.currentStep = steps.length;
 			triggerEnd = true;
 		}
-		
+
 		checkStatus.call(this);
-		
+
 		if(triggerEnd){
 			if(typeof this.options.onCompleted == 'function'){
 				this.options.onCompleted(this);
@@ -257,29 +257,29 @@ if(!bg){
 			}
 		}
 	},
-		
+
 	methods = {
 		init: function (element, options) {
 			var that = this;
 			this.$element = $(element);
 			this.options = $.extend(true, {}, defaults, options);
-			
+
 			var opts = this.options;
 
 			this.$element.addClass('wizard');
-			
-			
+
+
 			// add the buttons
 			var stepsBar = this.$element.find('.steps'),
 			actionBar = this.$element.find('.action-bar'),
 			bottomActions = this.$element.find('.bottom-actions'),
 			progressBar = this.$element.find('.progress-bar'),
 			html = '';
-			
+
 			// wrap steps in a container with hidden overflow, if it doesn't have a container
 			if(stepsBar.parent().hasClass('wizard')){
 				// let's add a container
-				stepsBar.wrap('<div class="steps-index-container"></div>');				
+				stepsBar.wrap('<div class="steps-index-container"></div>');
 			} else {
 				stepsBar.parent().addClass('steps-index-container');
 			}
@@ -290,24 +290,24 @@ if(!bg){
 				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.btnText.previous +'</span></span>';
 				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.btnText.next +'</span><span class="complete-text">'+ opts.btnText.complete +'</span></span>';
 				html += '</div></div>';
-				
+
 				stepsBar.after(html);
 			}
-			
+
 			html = '';
 			if(opts.bottomButtons && !bottomActions.length){
 				html += '<div class="bottom-actions">';
 				html += '<span class="'+this.options.prevClass+' btn-prev"><span class="previous-text">'+ opts.btnText.previous +'</span></span>';
 				html += '<span class="'+this.options.nextClass+' btn-next"><span class="next-text">'+ opts.btnText.next +'</span><span class="complete-text">'+ opts.btnText.complete +'</span></span>';
 				html += '</div>';
-				
+
 				that.$element.find('.steps-content').append(html);
 			}
 
 			// add arrows to btn
 			this.$element.find('.btn-prev').prepend('<i class="wiz-icon-arrow-left"></i>');
 			this.$element.find('.btn-next').append('<i class="wiz-icon-arrow-right"></i>');
-			
+
 			// get steps and prepare them
 			var content, step_num, stepsLi = this.$element.find('.steps > li');
 
@@ -321,11 +321,12 @@ if(!bg){
                 if (step_num != '') {
                     step_num = '<span class="label">' + step_num + '</span>';
                 }
+				var error_count = "<span class='step-errors'></span>";
 
-				step.empty().html('<span class="step-index">'+step_num+'</span>' + content + '<span class="wiz-icon-chevron-right colorA"></span><span class="wiz-icon-chevron-right colorB"></span>');
-				
+				step.empty().html('<span class="step-index">'+step_num+'</span>' + content + error_count + '<span class="wiz-icon-chevron-right colorA"></span><span class="wiz-icon-chevron-right colorB"></span>');
+
 				that.$element.find('.steps-content [data-step="'+ target +'"]').addClass('step-pane');
-				
+
 				// detect currentStep
 				if(step.hasClass('active') && !that.currentStep){
 					that.currentStep = i+1;
@@ -333,9 +334,9 @@ if(!bg){
 			}
 
 			this.$element.find('.steps > li:last-child').addClass('final');
-			
+
 			attachEventsHandler.call(this);
-			
+
 			var callbacks = ['checkStep','onCompleted'],cb;
 			for(var i=0;i<callbacks.length;i++){
 				cb = callbacks[i];
@@ -343,23 +344,46 @@ if(!bg){
 					this.options[cb] = window[this.options[cb]];
 				}
 			}
-		
+
 			checkStatus.call(this);
 		},
+
+        setErrorCount: function (params){
+            var step = params.step;
+            var count = params.errors;
+            console.log("Set Error Count of Step "+step+" to "+count);
+            //console.log(this.$element);
+            //console.log($(this.$element));
+            var eh = $(this.$element).find( 'li[data-step="'+step+'"] span.step-errors' ); //
+            if (count>0) {
+                eh.html("<span class='label'>" + count + "</span>");
+            } else {
+                eh.html("");
+            }
+            //console.log(i);
+            //if (i) {
+            //    console.log('Found it');
+            //}
+            //i.html("<span>You Suck</span>");
+
+
+            //#campaign_wizard > div.steps-index-container > ul > li:nth-child(2)
+            //<span class='label'>4</span>
+        },
 
 		next: function(checkStep,event){
 			moveStep.call(this,false,true,event,checkStep);
 		},
-		
+
 		previous: function(checkStep,event){
 			moveStep.call(this,false,false,event,checkStep);
 		},
-		
+
 		setStep: function(step, checkStep, event){
 			moveStep.call(this,step,null,event,checkStep);
 		}
 	};
-		
+
     var main = function (method) {
         var thisPlugin = this.data(dataPlugin);
         if (thisPlugin) {
@@ -388,6 +412,6 @@ if(!bg){
 
 	$(document).ready(function(){
 		var mySelector = document.querySelector('[data-wizard-builder]');
-		$(mySelector)[ pluginName ]({});				
+		$(mySelector)[ pluginName ]({});
 	});
 }(bg, document, window));
