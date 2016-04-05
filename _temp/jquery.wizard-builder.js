@@ -379,16 +379,16 @@ if(!bg){
     var main = function (method) {
         var thisPlugin = this.data(dataPlugin);
         if (thisPlugin) {
+            if (typeof method === 'undefined') { return thisPlugin; }
             if (typeof method === 'string' && thisPlugin[method]) {
                 return thisPlugin[method].apply(thisPlugin, Array.prototype.slice.call(arguments, 1));
             }
-            return console.log('Method ' + arg + ' does not exist on jQuery / jqLite' + pluginName);
+            return console.log('Method ' + method + ' does not exist on jQuery / jqLite' + pluginName);
         } else {
             if (!method || typeof method === 'object') {
 				thisPlugin = $.extend({}, methods);
 				thisPlugin.init(this, method);
 				this.data(dataPlugin, thisPlugin);
-
 				return this;
             }
             return console.log( pluginName +' is not instantiated. Please call $("selector").'+ pluginName +'({options})');
