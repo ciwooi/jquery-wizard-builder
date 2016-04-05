@@ -115,11 +115,6 @@ if(!bg){
 		onCompleted: false,
         onStepLoadBefore: false,
 
-
-		currentStep: 0,
-
-
-
         /* Style & Design */
 		nextClass     : 'btn btn-default btn-mini btn-xs',
         prevClass     : 'btn btn-default btn-mini btn-xs',
@@ -130,7 +125,11 @@ if(!bg){
 			complete  : 'Complete',
 			next      : 'Next',
 			previous  : 'Previous',
-		}
+		},
+
+        /* Current Step */
+        currentStep: 0,
+
 	},
 
 	attachEventsHandler = function(){
@@ -269,6 +268,8 @@ if(!bg){
 
 			this.$element.addClass('wizard');
 
+            // Set step count
+            this.steps = this.$element.find('.steps > li').length;
 
 			// add the buttons
 			var stepsBar = this.$element.find('.steps'),
@@ -361,6 +362,10 @@ if(!bg){
                     eh.html("");
                 }
             }
+        },
+
+        getStepCount: function () {
+            return this.steps;
         },
 
 		next: function(onStepLoadBefore,event){

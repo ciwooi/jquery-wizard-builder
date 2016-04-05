@@ -225,6 +225,13 @@ $("#my_wizard").wizardBuilder('methodNameBelow', { // methodNameBelow is referen
 	            If errors is set to 0, the error label will disappear
 	        </td>
 	    </tr>
+	    <tr>
+            <td>getStepCount</td>
+            <td>No Parameters</td>
+            <td>
+                Returns the integer number of steps in the wizard
+            </td>
+        </tr>
 	</tbody>
 </table>
 
